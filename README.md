@@ -15,9 +15,10 @@ The data consists of 77,536 loans including the:
   * Derogatory marks (as a number)
   * Total debt and
   * Loan status
-The model will predict the loan status based on the above features.  After designating `loan status` as the target label. the data will be split between a `training` set and a `testing` set with the `training` set roughly being `25%` of the original.
 
-The stages of the machine learning process includes an initial run using the `Logistic Regression` classifier algorithm to train the model.  The results of this initial run are then reviewed by examining the `confusion matrix` and its `classification report`.  This will then be followed by another run after the training data is `oversampled` in order to get a better representation of the `high-risk` group.  The performance of both models will then be compared.
+The model will predict the loan status based on the above features.  After designating `loan status` as the target label, the data will be split between a `training` set and a `testing` set with the `training` set roughly being `25%` of the original.
+
+The stages of the machine learning process include an initial run using the `Logistic Regression` classifier algorithm to train the model.  The results of this initial run are then reviewed by examining the `confusion matrix` and its `classification report`.  This will then be followed by another run after the training data is `oversampled` in order to get a better representation of the `high-risk` group.  The performance of both models will then be compared.
 
 ## Results
 
@@ -64,4 +65,4 @@ The balanced accuracy score for `model 2` was `0.9936781215845847`.
 
 ## Summary
 
-In summary, although the model 2's `precision` ratio for `high-risk loans` dropped by `0.01`, i.e. `model2` marginally lost its ability not to label as high-risk a loan is actually low-risk, its recall ratio increased by `0.08` indicating that it has increased its ability to find the `high-risk` loans over `model 1`.  I would therefore recommend `model 2`'s performance over `model 1`.
+In summary, although model 2's `precision` ratio for `high-risk loans` dropped by `0.01`, i.e. `model 2` lost its ability not to label as high-risk a loan is actually low-risk by a very small amount, its recall ratio increased by `0.08` indicating that it has increased its ability to find more `high-risk` loans over `model 1`.  I would therefore recommend `model 2`'s performance over `model 1`.
