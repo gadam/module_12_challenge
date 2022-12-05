@@ -2,30 +2,66 @@
 
 ## Overview of the Analysis
 
-In this section, I describe the analysis completed for the machine learning models used in this Challenge. This includes:
+Using machine learning models, this assessment performs an analysis of the credit worthiness of a peer-to-peer lending services company via the examination of a sample of its loan book. 
 
-* The purpose of the analysis.
-* What financial information the data was on, and what you needed to predict.
-* Basic information about the variables you were trying to predict (e.g., `value_counts`).
-* The stages of the machine learning process you went through as part of this analysis.
-* Methods used (e.g., `LogisticRegression`, or any resampling method).
+The purpose of the analysis is to determine how each model can identify high-risk loan customers via two modeling techniques, both using the `Logistic Regression` classifier with different training subsets of data.
+
+The data consists of 77,536 loans including the:
+  * Loan size
+  * Interest rate
+  * Borrower income
+  * Debt to income ratio
+  * Number of accounts
+  * Derogatory marks (as a number)
+  * Total debt and
+  * Loan status
+The model will predict the loan status based on the above features.  After designating `loan status` as the target label. the data will be split between a `training` set and a `testing` set with the `training` set roughly being `25%` of the original.
+
+The stages of the machine learning process includes an initial run using the `Logistic Regression` classifier algorithm to train the model.  The results of this initial run are then reviewed by examining the `confusion matrix` and its `classification report`.  This will then be followed by another run after the training data is `oversampled` in order to get a better representation of the `high-risk` group.  The performance of both models will then be compared.
 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
+### Machine Learning Model 1:
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+`Model 1` uses the training data obtained from the `train_test_split` function of the `scikit-learn` library with the following characteristics:
+||Healthy loans|High-risk loans|
+|-|-------------|---------------|
+|Count|75036|2500|
+
+The balanced accuracy score for model 1 was: `0.9520479254722232`.
+
+#### Confusion Matrix `model 1`
+
+||Positive|Negative|
+|-|------|-----|
+|Positive|18663|102|
+|Negative|56|563
 
 
+#### Classification report `model 1`
 
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
+||Precision|Recall|Specificity|F1|Geometric Mean|Indexed Balanced Accuracy|Sup|
+|-|-|-|-|-|-|-|-|
+|Healthy Loans|1.00|0.99|.091|1.00|0.95|0.91|18765
+|High-Risk Loans|0.85|0.91|0.99|0.88|0.95|0.91|619|
+|Avg/Total|0.99|0.99|0.91|0.99|0.95|0.91|19384
+
+
+### Machine Learning Model 2:
+`Model 2` oversamples the training data obtained to augment the `high-risk` group in order to match the `healthy loans` group count in an effort to improve the performance.
+
+||Healthy loans|High-risk loans|
+|-|-------------|---------------|
+|Count|56271|56271|
+
+The balanced accuracy score for `model 2` was `0.9936781215845847`.
+
+#### Confusion Matrix `model 2`
+||Positive|Negative|
+|-|------|-----|
+|Positive|18649|116|
+|Negative|4|615
 
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
-
-If you do not recommend any of the models, please justify your reasoning.
+In summary, although the model 2's `precision` ratio for `high-risk loans` dropped by `0.01`, i.e. `model2` marginally lost its ability not to label as high-risk a loan is actually low-risk, its recall ratio increased by `0.08` indicating that it has increased its ability to find the `high-risk` loans over `model 1`.  I would therefore recommend `model 2`'s performance over `model 1`.
